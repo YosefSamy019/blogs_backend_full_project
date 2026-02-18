@@ -1,7 +1,8 @@
 from abc import ABC, abstractmethod
 
-from src.data.failure import Failure
 from src.shared.either import Either
+
+from src.data.failure import Failure
 
 from src.app.requests.requests import *
 from src.app.responses.response import *

@@ -1,5 +1,6 @@
-from src.app.responses.response import *
 from src.data.models.models import *
+
+from src.app.responses.response import *
 
 
 class Mapper:

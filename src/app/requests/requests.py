@@ -1,25 +1,48 @@
 from typing import Optional
+from pydantic import BaseModel, Field, model_validator
 
-from pydantic import BaseModel
-
-
-class RegisterRequest(BaseModel):
-    first_name: str
-    last_name: str
-    email: str
-    password: str
+from src.app.validators.validators import Validators
 
 
-class CreateBlogRequest(BaseModel):
-    title: str
-    content: str
+class BaseModelRequest(BaseModel):
+    model_config = {
+        "str_strip_whitespace": True,
+    }
 
 
-class UpdateBlogRequest(BaseModel):
-    new_title: Optional[str]
-    new_content: Optional[str]
+class RegisterRequest(BaseModelRequest):
+    first_name: str = Field(min_length=2, max_length=50)
+    last_name: str = Field(min_length=2, max_length=50)
+    email: str = Field(min_length=6, max_length=50)
+    password: str = Field(min_length=8, max_length=128)
+
+    @model_validator(mode="after")
+    def validate_fields(self):
+        Validators.validate_email(self.email)
+        Validators.validate_password(self.password)
+        return self
 
 
-class UpdateUserRequest(BaseModel):
-    new_first_name: Optional[str]
-    new_last_name: Optional[str]
+class CreateBlogRequest(BaseModelRequest):
+    title: str = Field(min_length=3, max_length=150)
+    content: str = Field(min_length=10, max_length=5000)
+
+
+class UpdateBlogRequest(BaseModelRequest):
+    new_title: Optional[str] = Field(default=None, min_length=3, max_length=150)
+    new_content: Optional[str] = Field(default=None, min_length=10, max_length=5000)
+
+    @model_validator(mode="after")
+    def validate_fields(self):
+        Validators.at_least_one_valid([self.new_title, self.new_content])
+        return self
+
+
+class UpdateUserRequest(BaseModelRequest):
+    new_first_name: Optional[str] = Field(default=None, min_length=2, max_length=50)
+    new_last_name: Optional[str] = Field(default=None, min_length=2, max_length=50)
+
+    @model_validator(mode="after")
+    def validate_fields(self):
+        Validators.at_least_one_valid([self.new_first_name, self.new_last_name])
+        return self

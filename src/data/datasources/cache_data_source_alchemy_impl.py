@@ -1,12 +1,10 @@
 from typing import List, Optional
-from typing import Generator
+from sqlalchemy.orm import Session
+from src.infrastructure.alchemy_sql import DBProvider
 
 from src.data.datasources.cache_data_source import CacheDataSource
 from src.data.models.models import *
-from sqlalchemy.orm import Session
-
 from src.data.failure import Failure
-from src.infrastructure.alchemy_sql import DBProvider
 
 
 class CacheDataSourceAlChemyImpl(CacheDataSource):

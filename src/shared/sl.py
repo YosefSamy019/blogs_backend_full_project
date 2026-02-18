@@ -1,3 +1,7 @@
+from src.shared.env import Env
+
+from src.infrastructure.alchemy_sql import Base, engine, DBProvider
+
 from src.data.datasources.cache_data_source import CacheDataSource
 from src.data.datasources.cache_data_source_alchemy_impl import CacheDataSourceAlChemyImpl
 from src.data.repository_impl.auth_repository_impl import AuthRepositoryImpl
@@ -5,13 +9,14 @@ from src.data.repository_impl.blog_repository_impl import BlogRepositoryImpl
 from src.data.repository_impl.user_repository_impl import UserRepositoryImpl
 from src.data.services.hash_service import HashService
 from src.data.services.jwt_service import JWTService
+
 from src.domain.mappers.mappers import Mapper
 from src.domain.mappers.reverse_mappers import ReverseMapper
 from src.domain.repository.auth_repository import AuthRepository
 from src.domain.repository.blog_repository import BlogRepository
 from src.domain.repository.user_repository import UserRepository
-from src.infrastructure.alchemy_sql import Base, engine, DBProvider
-from src.shared.env import Env
+
+from src.app.responses.response_process import ResponseProcess
 
 
 class Sl:
@@ -70,6 +75,10 @@ class Sl:
             reverse_mapper=self.reverse_mapper,
             hash_service=self.hash_services,
             jwt_service=self.jwt_service,
+            env=self.env,
+        )
+
+        self.response_process: ResponseProcess = ResponseProcess(
             env=self.env,
         )
 

@@ -3,29 +3,33 @@ from typing import Optional, List
 from pydantic import BaseModel, Field
 
 
-class BlogResponse(BaseModel):
+class BaseResponseModel(BaseModel):
+    pass
+
+
+class BlogResponse(BaseResponseModel):
     id: int
     title: str
     content: str
 
 
-class BlogPageResponse(BaseModel):
-    page_size:int
+class BlogPageResponse(BaseResponseModel):
+    page_size: int
     blogs: List[BlogResponse]
     total_pages: int
 
 
-class DeleteBlogResponse(BaseModel):
+class DeleteBlogResponse(BaseResponseModel):
     id: int
 
 
-class UserResponse(BaseModel):
+class UserResponse(BaseResponseModel):
     first_name: str
     last_name: str
     email: str
 
 
-class LoginResponse(BaseModel):
+class LoginResponse(BaseResponseModel):
     access_token: str
     token_type: str
     user: UserResponse

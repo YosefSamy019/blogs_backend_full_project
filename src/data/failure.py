@@ -11,7 +11,8 @@ class Failure(Exception):
         if isinstance(error, Failure):
             return error
         else:
-            raise error
+            # Raise errors in case of debug only
+            # raise error
             return cls(501, str(error))
 
     @classmethod
@@ -28,12 +29,12 @@ class Failure(Exception):
 
     @classmethod
     def wrong_password(cls) -> 'Failure':
-        return cls(404, f'Password is wrong')
+        return cls(401, f'Invalid credentials')
 
     @classmethod
     def duplicated_email(cls, email: str) -> 'Failure':
-        return cls(404, f'Email {email} is duplicated')
+        return cls(409, f'Email {email} already exists')
 
     @classmethod
     def wrong_access_token(cls) -> 'Failure':
-        return cls(404, f'Wrong access token')
+        return cls(401, f'Invalid or expired access token')

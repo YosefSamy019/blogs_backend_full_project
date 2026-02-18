@@ -1,11 +1,10 @@
-from src.app.routes.routes_init import routes_init
-
 from fastapi import FastAPI
+import uvicorn
 
 from src.shared.sl import Sl
+from src.app.routes.routes_init import routes_init
 
 app = FastAPI()
-
 
 
 def main():
@@ -18,3 +17,6 @@ def main():
 
 
 main()
+
+if __name__ == "__main__":
+    uvicorn.run(app, port=8000)
