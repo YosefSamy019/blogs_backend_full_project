@@ -182,13 +182,20 @@ src/
 
 ## Preview Images
 
-* ![img.png](read_img/img.png) – **Blogs Table**
-* ![img\_1.png](read_img/img_1.png) – **Users Table**
-* ![img\_2.png](read_img/img_2.png) – **auth endpoints**
-* ![img\_3.png](read_img/img_3.png) – **blogs endpoints**
-* ![img\_4.png](read_img/img_4.png) – **users endpoints**
-* ![img\_5.png](read_img/img_5.png) – **default endpoints**
-* ![img\_6.png](read_img/img_6.png) – **schemas responses**
+– **Blogs Table**
+* ![img.png](read_img/img.png) 
+– **Users Table**
+* ![img\_1.png](read_img/img_1.png)
+– **auth endpoints**
+* ![img\_2.png](read_img/img_2.png) 
+– **blogs endpoints**
+* ![img\_3.png](read_img/img_3.png) 
+– **users endpoints**
+* ![img\_4.png](read_img/img_4.png) 
+– **default endpoints**
+* ![img\_5.png](read_img/img_5.png) 
+– **schemas responses**
+* ![img\_6.png](read_img/img_6.png) 
 
 ---
 
